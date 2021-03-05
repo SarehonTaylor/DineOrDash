@@ -6,7 +6,7 @@ function yelpApi() {
     console.log(requestUrl);
 
     // let access = {Access-Control-Allow-Origin: "*"};
-    let header = {Authorization: "Bearer O_IPrWWCmaXkkcUPJb0EjA:0TPfYzbBQDZOLb9MddQtWCiD1E7FLunXqWtcrc6Pwc2_aOxyJ9eW1yDiIcuIp_83vF0kprF5P0pVtDYpp4gU0S4r3oyxXFdKdbLUtPmW2X4Qfc8Kx9fQgeLjkfI-YHYx"};
+    // let header = {Authorization: "Bearer O_IPrWWCmaXkkcUPJb0EjA:0TPfYzbBQDZOLb9MddQtWCiD1E7FLunXqWtcrc6Pwc2_aOxyJ9eW1yDiIcuIp_83vF0kprF5P0pVtDYpp4gU0S4r3oyxXFdKdbLUtPmW2X4Qfc8Kx9fQgeLjkfI-YHYx"};
 
     fetch(requestUrl)
         .then(function(response) {
