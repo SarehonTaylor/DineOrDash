@@ -1,5 +1,8 @@
+let button = document.querySelector("button");
+
+button.addEventListener("click", yelpApi);
 function yelpApi() {
-    let requestUrl = "";
+    let requestUrl = "https://api.yelp.com/v3/autocomplete?text=del&latitude=37.786882&longitude=-122.399972";
     console.log(requestUrl);
 
     fetch(requestUrl)
