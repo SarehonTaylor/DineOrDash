@@ -34,3 +34,17 @@ function recipeApi() {
             console.log("Error");
         });
 }
+
+fetch("https://api.spoonacular.com/recipes/716429/information?apiKey=349863eb6f0f4135b4d518b60c73d656&includeNutrition=true"
+ 
+	
+)
+.then(response => {
+	return response.json();
+})
+.then(data => {
+    console.log(data);
+}) 
+.catch(err => {
+	console.error(err);
+});
