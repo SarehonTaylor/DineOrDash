@@ -1,11 +1,11 @@
-let button = document.querySelector("button");
+let input = document.querySelector("input");
 
-button.addEventListener("click", yelpApi);
+input.addEventListener("click", yelpApi);
 function yelpApi() {
     let requestUrl = "https://api.yelp.com/v3/autocomplete?text=del&latitude=37.786882&longitude=-122.399972";
     console.log(requestUrl);
 
-    let access = {Access-Control-Allow-Origin: "*"};
+    // let access = {Access-Control-Allow-Origin: "*"};
     let header = {Authorization: "Bearer O_IPrWWCmaXkkcUPJb0EjA:0TPfYzbBQDZOLb9MddQtWCiD1E7FLunXqWtcrc6Pwc2_aOxyJ9eW1yDiIcuIp_83vF0kprF5P0pVtDYpp4gU0S4r3oyxXFdKdbLUtPmW2X4Qfc8Kx9fQgeLjkfI-YHYx"};
 
     fetch(requestUrl)
