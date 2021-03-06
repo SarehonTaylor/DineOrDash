@@ -59,18 +59,16 @@ function recipeApi() {
         });
 }
 
-//Helpful recipe code
-// var unirest = require("unirest");
-// var req = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/extract");
-// req.query({
-// 	"url": "http://www.melskitchencafe.com/the-best-fudgy-brownies/"
-// });
-// req.headers({
-// 	"x-rapidapi-key": "6ff39b8647mshb4ef68c9809d5bfp1b15aajsn1265ffd5435c",
-// 	"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-// 	"useQueryString": true
-// });
-// req.end(function (res) {
-// 	if (res.error) throw new Error(res.error);
-// 	console.log(res.body);
-// });
+fetch("https://api.spoonacular.com/recipes/716429/information?apiKey=349863eb6f0f4135b4d518b60c73d656&includeNutrition=true"
+ 
+	
+)
+.then(response => {
+	return response.json();
+})
+.then(data => {
+    console.log(data);
+}) 
+.catch(err => {
+	console.error(err);
+});
