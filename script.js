@@ -2,6 +2,8 @@ let city = "columbus";
 let food = "pizza";
 // getCoords(city);
 recipeApi(food);
+// recipeRapidApi(food);
+
 //Takes a city string as an argument and inputs the latitude and longitude of that city as arguments for
 //the restApi() function
 function getCoords(city) {
@@ -81,8 +83,11 @@ function recipeApi(food) {
     });
 }
 
-// function recipeApi(food) {
-//     fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/queries/analyze?q=pizza", {
+//Spoonacular Rapidapi function
+// function recipeRapidApi(food) {
+//     let requestUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/queries/analyze?q=" + food;
+
+//     fetch(requestUrl, {
 // 	"method": "GET",
 // 	"headers": {
 // 		"x-rapidapi-key": "f8fb3fa959msh5a99371fad537f4p136473jsn05a9c31b8f9d",
