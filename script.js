@@ -1,9 +1,4 @@
-let city = "columbus";
-let address = "281 W Lane Ave, Columbus, OH 43210";
-let foods = ["tacos", "waffles", "chicken sandwich", "omelette", "burger"]
-
-
-
+//Global variables
 let area = document.querySelector("#location");
 let food = document.querySelector("#food");
 let button = document.querySelector("#submit");
@@ -12,13 +7,15 @@ let restDiv = document.querySelector("#restaurants");
 let historyDiv = document.querySelector("#searchhistory");
 let clear = document.querySelector("#clear");
 
+//Uses localStorage to populate an array and the search history
 let array = [];
 let localArray = localStorage.getItem("array");
 if (localArray !== null) {
     array = JSON.parse(localArray);
+
     for (let i = 0; i < array.length; i++) {
         let buttonSearch = document.createElement("button");
-        buttonSearch.innerHTML = array[i];
+        buttonSearch.innerHTML = "Location: " + array[i][0] + ", Food: " + array[i][1];
         historyDiv.appendChild(buttonSearch);
 
         buttonSearch.addEventListener("click", function() {
@@ -32,27 +29,31 @@ if (localArray !== null) {
     }
 }
 
+//Clears search history and localStorage
 clear.addEventListener("click", function() {
     array = [];
     localStorage.setItem("array", JSON.stringify(array));
     historyDiv.innerHTML = "";
 })
 
+//Calls the recipeApi and coords functions to get information from the APIs when the submit button is clicked
 button.addEventListener("click", function() {
     recipeDiv.innerHTML = "";
     recipeApi(food.value);
-    
+
     restDiv.innerHTML = "";
     coords(area.value, food.value);
 });
 
+//Adds the input items to localStorage and search history
 button.addEventListener("click", function() {
     array.push([area.value, food.value]);
     localStorage.setItem("array", JSON.stringify(array));
     historyDiv.innerHTML = "";
+
     for (let i = 0; i < array.length; i++) {
         let buttonSearch = document.createElement("button");
-        buttonSearch.innerHTML = array[i];
+        buttonSearch.innerHTML = "Location: " + array[i][0] + ", Food: " + array[i][1];
         historyDiv.appendChild(buttonSearch);
 
         buttonSearch.addEventListener("click", function() {
@@ -93,7 +94,7 @@ function coords(address, food) {
         });
 }
 
-//Takes the coordinates of the inputed city and the requested food item and prints 20 results to the console
+//Takes the coordinates of the inputed city and the requested food item and prints 10 results to the console
 function restApi(lat, lon, food) {
     let requestUrl = "https://documenu.p.rapidapi.com/menuitems/search/geo?lat=" + lat + "&lon=" + lon + "&distance=5&size=10&page=1&search=" + food;
     
@@ -148,14 +149,14 @@ function restApi(lat, lon, food) {
 
                 restDiv.appendChild(div);
             }
-            
         })
         .catch(err => {
             console.error(err);
         });
 }
 
-//Takes the food item as an argument and outputs a list of recipes
+//Takes the food item as an argument and outputs a list of recipes, each recipe is clickable and reveals
+//the list of ingredients and recipe steps
 function recipeApi(food) {
     let requestUrl = "https://api.spoonacular.com/recipes/complexSearch?query=" + food + "&number=10&apiKey=349863eb6f0f4135b4d518b60c73d656";
 
@@ -164,7 +165,6 @@ function recipeApi(food) {
             return response.json();
         })
         .then(data => {
-            console.log("--");
             console.log("Recipes data:");
             console.log(data);
             
@@ -191,9 +191,6 @@ function recipeApi(food) {
     });
 }
 
-// let recipeButton = document.querySelector(".recipebutton");
-
-
 //Fetches the ingredients and recipe steps of a given recipe id that is used as an argument
 function ingredientsApi(recipeId) {
     let requestUrl = "https://api.spoonacular.com/recipes/" + recipeId + "/information?apiKey=349863eb6f0f4135b4d518b60c73d656&includeNutrition=true";
@@ -203,29 +200,33 @@ function ingredientsApi(recipeId) {
             return response.json();
         })
         .then(data => {
+            console.log("--");
+            console.log("Ingredients:");
             console.log(recipeId);
             console.log(data);
 
-            let ingredients = data["extendedIngredients"];
-            console.log("Ingredients:");
+            
 
             recipeDiv.innerHTML = "";
+
+            let foodItem = document.createElement("h2");
+            foodItem.innerHTML = data["title"];
+            recipeDiv.appendChild(foodItem);
+
             let ingredientsH2 = document.createElement("h2");
             ingredientsH2.innerHTML = "Ingredients List:";
             recipeDiv.appendChild(ingredientsH2);
+
+            let ingredients = data["extendedIngredients"];
             for (let i = 0; i < ingredients.length; i++) {
                 let ingrNum = i + 1;
 
-                // console.log(ingrNum + ". " + ingredients[i]["original"]);
                 let pIngredient = document.createElement("p");
                 pIngredient.classList.add("ingredient");
                 pIngredient.innerHTML = ingrNum + ". " + ingredients[i]["original"];
                 recipeDiv.appendChild(pIngredient);
             }
 
-            console.log("--");
-
-            // console.log("Recipe Steps:");
             let recipeSteps = document.createElement("h2");
             recipeSteps.innerHTML = "Recipe Steps:";
             recipeDiv.appendChild(recipeSteps);
@@ -235,18 +236,15 @@ function ingredientsApi(recipeId) {
                 for (let i = 0; i < instructions.length; i++) {
                     let num = i + 1;
 
-                    // console.log(num + ": " + instructions[i]["name"]);
                     let instrPart = document.createElement("p");
                     instrPart.classList.add("recipelist");
                     instrPart.innerHTML = num + ": " + instructions[i]["name"];
                     recipeDiv.appendChild(instrPart);
 
-    
                     let steps = instructions[i]["steps"];
                     for (let i = 0; i < steps.length; i++) {
                         let stepsNum = i + 1;
 
-                        // console.log("   " + stepsNum + ". " + steps[i]["step"]);
                         let instr = document.createElement("p");
                         instr.classList.add("recipelist");
                         instr.innerHTML = "   " + stepsNum + ". " + steps[i]["step"];
@@ -258,19 +256,14 @@ function ingredientsApi(recipeId) {
                 for (let i = 0; i < steps.length; i++) {
                     let stepsNum = i + 1;
 
-                    // console.log("   " + stepsNum + ". " + steps[i]["step"]);
                     let instr = document.createElement("p");
                     instr.classList.add("recipelist");
                     instr.innerHTML = "   " + stepsNum + ". " + steps[i]["step"];
                     recipeDiv.appendChild(instr);
                 }
             }
-
-            
-
-            
         }) 
         .catch(err => {
             console.error(err);
-    });
+        });
 }

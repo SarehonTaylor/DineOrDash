@@ -12,8 +12,21 @@ p {
 }
 
 #recipes {
+    border-color: var(--green);
     display: flex;
     flex-direction: column;
+}
+
+#recipes h2 {
+    background: var(--pastelGreen);
+}
+
+#restaurants {
+    border-color: var(--red);
+}
+
+#restaurants h2 {
+    background-color: var(--pastelRed);
 }
 
 .ingredient, .recipelist {
@@ -27,4 +40,17 @@ p {
     display: flex;
     flex-direction: column;
     /* align-items: center; */
+}
+
+#history h1, #history h2, #history p {
+    background-color: var(--pastelBlue);
+}
+
+/* #history div button {
+    background-color: var(--cloudy);
+} */
+
+#searchhistory {
+    display: flex;
+    flex-direction: column-reverse;
 }
