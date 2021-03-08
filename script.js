@@ -1,10 +1,9 @@
 let city = "columbus";
 let address = "281 W Lane Ave, Columbus, OH 43210";
-// address = city;
-let food = "pizza";
+let food = "burger";
 
-coords(address);
-// recipeApi(food);
+// coords(address);
+recipeApi(food);
 
 //Takes an address string as an argument and inputs the latitude and longitude of that address as arguments for
 //the restApi() function
@@ -33,7 +32,7 @@ function coords(address) {
         });
 }
 
-//Takes the coordinates of the inputed city and the requested food item and prints 10 results to the console
+//Takes the coordinates of the inputed city and the requested food item and prints 20 results to the console
 function restApi(lat, lon, food) {
     let requestUrl = "https://documenu.p.rapidapi.com/menuitems/search/geo?lat=" + lat + "&lon=" + lon + "&distance=5&size=10&page=1&search=" + food;
     
@@ -58,6 +57,7 @@ function restApi(lat, lon, food) {
                 console.log("Restaurant: " + data["data"][i]["restaurant_name"]);
                 console.log("Food: " + data["data"][i]["menu_item_name"]);
                 console.log("Price: " + data["data"][i]["menu_item_price"]);
+                console.log("Address: " + data["data"][i]["address"]["formatted"]);
             }
         })
         .catch(err => {
@@ -79,12 +79,12 @@ function recipeApi(food) {
             console.log("Recipes data:");
             console.log(data);
             
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < data["results"].length; i++) {
                 let num = i + 1;
                 console.log(num + ". " + data["results"][i]["title"]);
             }
 
-            let chosen = 2;
+            let chosen = 1;
             ingredientsApi(data["results"][chosen]["id"]);
         }) 
         .catch(err => {
@@ -92,7 +92,7 @@ function recipeApi(food) {
     });
 }
 
-//Fetches the ingredients of a given recipe id that is used as an argument
+//Fetches the ingredients and preparation steps of a given recipe id that is used as an argument
 function ingredientsApi(recipe) {
     let requestUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?apiKey=349863eb6f0f4135b4d518b60c73d656&includeNutrition=true";
 
@@ -101,9 +101,9 @@ function ingredientsApi(recipe) {
             return response.json();
         })
         .then(data => {
+            console.log(recipe);
             console.log("Ingredients data:");
             console.log(data);
-            console.log(recipe);
 
             let ingredients = data["extendedIngredients"];
             console.log("Ingredients:");
@@ -114,12 +114,20 @@ function ingredientsApi(recipe) {
 
             console.log("--");
 
-            let steps = data["analyzedInstructions"][0]["steps"];
             console.log("Recipe Steps:");
-            for (let i = 0; i < steps.length; i++) {
-                let stepsNum = i + 1;
-                console.log(stepsNum + ": " + steps[i]["step"]);
+            let instructions = data["analyzedInstructions"];
+            for (let i = 0; i < instructions.length; i++) {
+                let num = i + 1;
+                console.log(num + ": " + instructions[i]["name"]);
+
+                let steps = instructions[i]["steps"];
+                for (let i = 0; i < steps.length; i++) {
+                    let stepsNum = i + 1;
+                    console.log("   " + stepsNum + ". " + steps[i]["step"]);
+                }
             }
+
+            
         }) 
         .catch(err => {
             console.error(err);
