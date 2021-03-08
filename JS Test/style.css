@@ -16,7 +16,7 @@ p {
     flex-direction: column;
 }
 
-.ingredient {
+.ingredient, .recipelist {
     border: 2px solid black;
     background: var(--cloudy);
     margin: 4px;
@@ -24,5 +24,7 @@ p {
 }
 
 #history {
+    display: flex;
+    flex-direction: column;
     /* align-items: center; */
 }
