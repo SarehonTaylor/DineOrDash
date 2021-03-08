@@ -1,35 +1,41 @@
 let city = "columbus";
+let address = "281 W Lane Ave, Columbus, OH 43210";
+// address = city;
 let food = "pizza";
-// getCoords(city);
-recipeApi(food);
-// recipeRapidApi(food);
 
-//Takes a city string as an argument and inputs the latitude and longitude of that city as arguments for
+coords(address);
+// recipeApi(food);
+
+//Takes an address string as an argument and inputs the latitude and longitude of that address as arguments for
 //the restApi() function
-function getCoords(city) {
-    let requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=de53a40654766cb8ce20288a99c9f736";
+function coords(address) {
+    let requestUrl = "https://www.mapquestapi.com/geocoding/v1/address?key=OTXJc1VBLf5O4Q9o2nAZaZRR0fXaGJw1&inFormat=kvp&outFormat=json&location=" + address + "&thumbMaps=false";
+    console.log(requestUrl);
 
     fetch(requestUrl)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(data) {
-        console.log("Openweather data:");
-        console.log(data);
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log("Lat Lon Data:");
+            console.log(data);
 
-        let lat = data["coord"]["lat"];
-        let lon = data["coord"]["lon"];
-        restApi(lat, lon, food);
-      })
-      .catch(function() {
-        console.log("Error");
-      });
+            let lat = data["results"][0]["locations"][0]["latLng"]["lat"];
+            console.log("Lat: " + lat);
+
+            let lon = data["results"][0]["locations"][0]["latLng"]["lng"];
+            console.log("Lon: " + lon);
+
+            restApi(lat, lon, food);
+        })
+        .catch(function() {
+            console.log("Error");
+        });
 }
 
 //Takes the coordinates of the inputed city and the requested food item and prints 10 results to the console
 function restApi(lat, lon, food) {
     let requestUrl = "https://documenu.p.rapidapi.com/menuitems/search/geo?lat=" + lat + "&lon=" + lon + "&distance=5&size=10&page=1&search=" + food;
-    console.log(requestUrl);
     
     fetch(requestUrl, {
 	"method": "GET",
@@ -61,53 +67,61 @@ function restApi(lat, lon, food) {
 
 //Takes the food item as an argument and outputs a list of recipes
 function recipeApi(food) {
-    let requestUrl = "https://api.spoonacular.com/recipes/716429/information?apiKey=349863eb6f0f4135b4d518b60c73d656&includeNutrition=true";
-    console.log(requestUrl);
+    let requestUrl = "https://api.spoonacular.com/recipes/complexSearch?query=" + food + "&number=10&apiKey=349863eb6f0f4135b4d518b60c73d656";
 
     fetch(requestUrl)
         .then(response => {
             return response.json();
         })
         .then(data => {
-            console.log("Spoonacular data:");
-            console.log(data);
             console.log(food);
-
+            console.log("--");
+            console.log("Recipes data:");
+            console.log(data);
+            
             for (let i = 0; i < 10; i++) {
                 let num = i + 1;
-                console.log(num + ". Recipe");
+                console.log(num + ". " + data["results"][i]["title"]);
             }
+
+            let chosen = 2;
+            ingredientsApi(data["results"][chosen]["id"]);
         }) 
         .catch(err => {
             console.error(err);
     });
 }
 
-//Spoonacular Rapidapi function
-// function recipeRapidApi(food) {
-//     let requestUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/queries/analyze?q=" + food;
+//Fetches the ingredients of a given recipe id that is used as an argument
+function ingredientsApi(recipe) {
+    let requestUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?apiKey=349863eb6f0f4135b4d518b60c73d656&includeNutrition=true";
 
-//     fetch(requestUrl, {
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-key": "f8fb3fa959msh5a99371fad537f4p136473jsn05a9c31b8f9d",
-// 		"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-// 	}
-//     })
-//         .then(response => {
-//             return response.json();
-//         })
-//         .then(data => {
-//             console.log("Rapidapi Spoonacular data:");
-//             console.log(data);
-//             console.log(food);
+    fetch(requestUrl)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            console.log("Ingredients data:");
+            console.log(data);
+            console.log(recipe);
 
-//             for (let i = 0; i < 10; i++) {
-//                 let num = i + 1;
-//                 console.log(num + ". Recipe");
-//             }
-//         })
-//         .catch(err => {
-//             console.error(err);
-//         });
-// }
+            let ingredients = data["extendedIngredients"];
+            console.log("Ingredients:");
+            for (let i = 0; i < ingredients.length; i++) {
+                let ingrNum = i + 1;
+                console.log(ingrNum + ". " + ingredients[i]["original"]);
+            }
+
+            console.log("--");
+
+            let steps = data["analyzedInstructions"][0]["steps"];
+            console.log("Recipe Steps:");
+            for (let i = 0; i < steps.length; i++) {
+                let stepsNum = i + 1;
+                console.log(stepsNum + ": " + steps[i]["step"]);
+            }
+        }) 
+        .catch(err => {
+            console.error(err);
+    });
+}
