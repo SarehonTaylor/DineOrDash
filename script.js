@@ -1,9 +1,9 @@
 let city = "columbus";
 let address = "281 W Lane Ave, Columbus, OH 43210";
-let food = "burger";
+let food = "sushi";
 
-// coords(address);
-recipeApi(food);
+coords(address);
+// recipeApi(food);
 
 //Takes an address string as an argument and inputs the latitude and longitude of that address as arguments for
 //the restApi() function
@@ -84,7 +84,7 @@ function recipeApi(food) {
                 console.log(num + ". " + data["results"][i]["title"]);
             }
 
-            let chosen = 1;
+            let chosen = 0;
             ingredientsApi(data["results"][chosen]["id"]);
         }) 
         .catch(err => {
@@ -92,7 +92,7 @@ function recipeApi(food) {
     });
 }
 
-//Fetches the ingredients and preparation steps of a given recipe id that is used as an argument
+//Fetches the ingredients and recipe steps of a given recipe id that is used as an argument
 function ingredientsApi(recipe) {
     let requestUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?apiKey=349863eb6f0f4135b4d518b60c73d656&includeNutrition=true";
 
