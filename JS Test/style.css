@@ -1,0 +1,28 @@
+p {
+    font-size: 10pt;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background: none;
+}
+
+.grey {
+    background: var(--cloudy);
+    border-color: black;
+}
+
+#recipes {
+    display: flex;
+    flex-direction: column;
+}
+
+.ingredient {
+    border: 2px solid black;
+    background: var(--cloudy);
+    margin: 4px;
+    padding: 4px;
+}
+
+#history {
+    /* align-items: center; */
+}
