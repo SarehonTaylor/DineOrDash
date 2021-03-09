@@ -6,23 +6,31 @@ p {
     background: none;
 }
 
+header {
+    border-color: var(--yellow);
+}
+
 .grey {
     background: var(--cloudy);
     border-color: black;
 }
 
 #recipes {
-    border-color: var(--green);
     display: flex;
     flex-direction: column;
+    border: 2px solid var(--green);
+}
+
+#recipes p, #recipes button, #restaurants p, #restaurants button {
+    text-align: start;
+}
+
+#restaurants {
+    border: 2px solid var(--red);
 }
 
 #recipes h2 {
     background: var(--pastelGreen);
-}
-
-#restaurants {
-    border-color: var(--red);
 }
 
 #restaurants h2 {
@@ -36,21 +44,17 @@ p {
     padding: 4px;
 }
 
-#history {
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-}
-
 #history h1, #history h2, #history p {
     background-color: var(--pastelBlue);
 }
 
-/* #history div button {
-    background-color: var(--cloudy);
-} */
-
 #searchhistory {
     display: flex;
     flex-direction: column-reverse;
+}
+
+#twopanels {
+    border: 0;
+    margin: 0;
+    padding: 0;
 }

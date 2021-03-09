@@ -252,14 +252,21 @@ function ingredientsApi(recipeId) {
                     }
                 }
             } else {
-                let steps = instructions[0]["steps"];
-                for (let i = 0; i < steps.length; i++) {
-                    let stepsNum = i + 1;
+                if (instructions.length > 0) {
+                    let steps = instructions[0]["steps"];
+                    for (let i = 0; i < steps.length; i++) {
+                        let stepsNum = i + 1;
 
+                        let instr = document.createElement("p");
+                        instr.classList.add("recipelist");
+                        instr.innerHTML = "   " + stepsNum + ". " + steps[i]["step"];
+                        recipeDiv.appendChild(instr);
+                    }
+                } else {
                     let instr = document.createElement("p");
-                    instr.classList.add("recipelist");
-                    instr.innerHTML = "   " + stepsNum + ". " + steps[i]["step"];
-                    recipeDiv.appendChild(instr);
+                        instr.classList.add("recipelist");
+                        instr.innerHTML = "None";
+                        recipeDiv.appendChild(instr);
                 }
             }
         }) 
