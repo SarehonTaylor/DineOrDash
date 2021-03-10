@@ -44,11 +44,12 @@ header {
     padding: 4px;
 }
 
-#history h1, #history h2, #history p {
-    background-color: var(--pastelBlue);
+#searchhistory {
+    display: flex;
+    flex-direction: column-reverse;
 }
 
-#searchhistory {
+#recipehistory {
     display: flex;
     flex-direction: column-reverse;
 }
@@ -61,4 +62,8 @@ header {
 
 button {
     box-shadow: 1px 1px 1px white;
+}
+
+#history h1, #history h2, #history p {
+    background-color: var(--pastelBlue);
 }
