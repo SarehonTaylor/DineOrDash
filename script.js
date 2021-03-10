@@ -1,10 +1,86 @@
-  
+
 let input = document.querySelector("input");
 
 input.addEventListener("click", yelpApi);
 function yelpApi() {
     let requestUrl = "https://api.yelp.com/v3/autocomplete?text=del&latitude=37.786882&longitude=-122.399972";
     console.log(requestUrl);
+=======
+//Global variables
+let area = document.querySelector("#location");
+let food = document.querySelector("#food");
+let button = document.querySelector("#submit");
+let recipeDiv = document.querySelector("#recipes");
+let restDiv = document.querySelector("#restaurants");
+let historyDiv = document.querySelector("#searchhistory");
+let clear = document.querySelector("#clear");
+
+//Uses localStorage to populate an array and the search history
+let array = [];
+let localArray = localStorage.getItem("array");
+if (localArray !== null) {
+    array = JSON.parse(localArray);
+
+    for (let i = 0; i < array.length; i++) {
+        let buttonSearch = document.createElement("button");
+        buttonSearch.innerHTML = "Location: " + array[i][0] + ", Food: " + array[i][1];
+        historyDiv.appendChild(buttonSearch);
+
+        buttonSearch.addEventListener("click", function() {
+            recipeDiv.innerHTML = "";
+            restDiv.innerHTML = "";
+            area.value = array[i][0];
+            food.value = array[i][1];
+            recipeApi(food.value);
+            coords(area.value, food.value);
+        })
+    }
+}
+
+//Clears search history and localStorage
+clear.addEventListener("click", function() {
+    array = [];
+    localStorage.setItem("array", JSON.stringify(array));
+    historyDiv.innerHTML = "";
+})
+
+//Calls the recipeApi and coords functions to get information from the APIs when the submit button is clicked
+button.addEventListener("click", function() {
+    recipeDiv.innerHTML = "";
+    recipeApi(food.value);
+
+    restDiv.innerHTML = "";
+    coords(area.value, food.value);
+});
+
+//Adds the input items to localStorage and search history
+button.addEventListener("click", function() {
+    array.push([area.value, food.value]);
+    localStorage.setItem("array", JSON.stringify(array));
+    historyDiv.innerHTML = "";
+
+    for (let i = 0; i < array.length; i++) {
+        let buttonSearch = document.createElement("button");
+        buttonSearch.innerHTML = "Location: " + array[i][0] + ", Food: " + array[i][1];
+        historyDiv.appendChild(buttonSearch);
+
+        buttonSearch.addEventListener("click", function() {
+            recipeDiv.innerHTML = "";
+            restDiv.innerHTML = "";
+            area.value = array[i][0];
+            food.value = array[i][1];
+            recipeApi(food.value);
+            coords(area.value, food.value);
+        })
+    }
+    console.log(array);
+})
+
+//Takes an address string as an argument and inputs the latitude and longitude of that address as arguments for
+//the restApi() function
+function coords(address, food) {
+    let requestUrl = "https://www.mapquestapi.com/geocoding/v1/address?key=OTXJc1VBLf5O4Q9o2nAZaZRR0fXaGJw1&inFormat=kvp&outFormat=json&location=" + address + "&thumbMaps=false";
+
 
     // let access = {Access-Control-Allow-Origin: "*"};
     // let header = {Authorization: "Bearer O_IPrWWCmaXkkcUPJb0EjA:0TPfYzbBQDZOLb9MddQtWCiD1E7FLunXqWtcrc6Pwc2_aOxyJ9eW1yDiIcuIp_83vF0kprF5P0pVtDYpp4gU0S4r3oyxXFdKdbLUtPmW2X4Qfc8Kx9fQgeLjkfI-YHYx"};
@@ -14,13 +90,22 @@ function yelpApi() {
             return response.json();
         })
         .then(function(data) {
+            console.log("Lat Lon Data:");
             console.log(data);
-            //Type code here
+
+            let lat = data["results"][0]["locations"][0]["latLng"]["lat"];
+            console.log("Lat: " + lat);
+
+            let lon = data["results"][0]["locations"][0]["latLng"]["lng"];
+            console.log("Lon: " + lon);
+
+            restApi(lat, lon, food);
         })
         .catch(function() {
             console.log("Error");
         });
 }
+
 
 
 function cheater() {
@@ -42,19 +127,188 @@ function cheater() {
 function recipeApi() {
     let requestUrl = "";
     console.log(requestUrl);
-
-    fetch(requestUrl)
-        .then(function(response) {
+=======
+//Takes the coordinates of the inputed city and the requested food item and prints 10 results to the console
+function restApi(lat, lon, food) {
+    let requestUrl = "https://documenu.p.rapidapi.com/menuitems/search/geo?lat=" + lat + "&lon=" + lon + "&distance=5&size=10&page=1&search=" + food;
+    
+    fetch(requestUrl, {
+	"method": "GET",
+	"headers": {
+		"x-api-key": "3961f418c97acd355c657af27c9e007c",
+		"x-rapidapi-key": "f8fb3fa959msh5a99371fad537f4p136473jsn05a9c31b8f9d",
+		"x-rapidapi-host": "documenu.p.rapidapi.com"
+	}
+    })
+        .then(response => {
             return response.json();
         })
-        .then(function(data) {
+        .then(data => {
+            console.log("--");
+            console.log("Documenu data:");
             console.log(data);
-            //Type code here
+
+            let title = document.createElement("h2");
+            title.innerHTML = "Restaurant List:";
+            restDiv.appendChild(title);
+            
+            for (let i = 0; i < data["data"].length; i++) {
+                let num = i + 1;
+                let div = document.createElement("div");
+                div.classList.add("grey");
+
+                let pNum = document.createElement("p");
+                pNum.innerHTML = num + ".";
+                div.appendChild(pNum);
+
+                let pFood = document.createElement("p");
+                pFood.innerHTML = "   Food: " + data["data"][i]["menu_item_name"];
+                div.appendChild(pFood);
+
+                let pDesc = document.createElement("p");
+                pDesc.innerHTML = "   Description: " + data["data"][i]["menu_item_description"];
+                div.appendChild(pDesc);
+
+                let pPrice = document.createElement("p");
+                pPrice.innerHTML = "   Price: " + data["data"][i]["menu_item_pricing"][0]["priceString"];
+                div.appendChild(pPrice);
+
+                let pRest = document.createElement("p");
+                pRest.innerHTML = "   Restaurant: " + data["data"][i]["restaurant_name"];
+                div.appendChild(pRest);
+
+                let pAddy = document.createElement("p");
+                pAddy.innerHTML = "   Address: " + data["data"][i]["address"]["formatted"];
+                div.appendChild(pAddy);
+
+                restDiv.appendChild(div);
+            }
         })
-        .catch(function() {
-            console.log("Error");
+        .catch(err => {
+            console.error(err);
         });
 }
+
+//Takes the food item as an argument and outputs a list of recipes, each recipe is clickable and reveals
+//the list of ingredients and recipe steps
+function recipeApi(food) {
+    let requestUrl = "https://api.spoonacular.com/recipes/complexSearch?query=" + food + "&number=10&apiKey=349863eb6f0f4135b4d518b60c73d656";
+
+    fetch(requestUrl)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            console.log("Recipes data:");
+            console.log(data);
+            
+            let recipeList = document.createElement("h2");
+            recipeList.innerHTML = "Recipe List:";
+            recipeDiv.appendChild(recipeList);
+
+            for (let i = 0; i < data["results"].length; i++) {
+                let num = i + 1;
+
+                let bRecipe = document.createElement("button");
+                bRecipe.classList.add("recipebutton");
+                bRecipe.innerHTML = num + ". " + data["results"][i]["title"];
+                recipeDiv.appendChild(bRecipe);
+
+                let recipeId = data["results"][i]["id"];
+                bRecipe.addEventListener("click", function() {
+                    ingredientsApi(recipeId);
+                })
+            }            
+        }) 
+        .catch(err => {
+            console.error(err);
+    });
+}
+
+//Fetches the ingredients and recipe steps of a given recipe id that is used as an argument
+function ingredientsApi(recipeId) {
+    let requestUrl = "https://api.spoonacular.com/recipes/" + recipeId + "/information?apiKey=349863eb6f0f4135b4d518b60c73d656&includeNutrition=true";
+
+    fetch(requestUrl)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            console.log("--");
+            console.log("Ingredients:");
+            console.log(recipeId);
+            console.log(data);
+
+            
+
+            recipeDiv.innerHTML = "";
+
+            let foodItem = document.createElement("h2");
+            foodItem.innerHTML = data["title"];
+            recipeDiv.appendChild(foodItem);
+
+            let ingredientsH2 = document.createElement("h2");
+            ingredientsH2.innerHTML = "Ingredients List:";
+            recipeDiv.appendChild(ingredientsH2);
+
+            let ingredients = data["extendedIngredients"];
+            for (let i = 0; i < ingredients.length; i++) {
+                let ingrNum = i + 1;
+
+                let pIngredient = document.createElement("p");
+                pIngredient.classList.add("ingredient");
+                pIngredient.innerHTML = ingrNum + ". " + ingredients[i]["original"];
+                recipeDiv.appendChild(pIngredient);
+            }
+
+            let recipeSteps = document.createElement("h2");
+            recipeSteps.innerHTML = "Recipe Steps:";
+            recipeDiv.appendChild(recipeSteps);
+
+            let instructions = data["analyzedInstructions"];
+            if (instructions.length > 1) {
+                for (let i = 0; i < instructions.length; i++) {
+                    let num = i + 1;
+
+                    let instrPart = document.createElement("p");
+                    instrPart.classList.add("recipelist");
+                    instrPart.innerHTML = num + ": " + instructions[i]["name"];
+                    recipeDiv.appendChild(instrPart);
+
+                    let steps = instructions[i]["steps"];
+                    for (let i = 0; i < steps.length; i++) {
+                        let stepsNum = i + 1;
+
+                        let instr = document.createElement("p");
+                        instr.classList.add("recipelist");
+                        instr.innerHTML = "   " + stepsNum + ". " + steps[i]["step"];
+                        recipeDiv.appendChild(instr);
+                    }
+                }
+            } else {
+                if (instructions.length > 0) {
+                    let steps = instructions[0]["steps"];
+                    for (let i = 0; i < steps.length; i++) {
+                        let stepsNum = i + 1;
+
+                        let instr = document.createElement("p");
+                        instr.classList.add("recipelist");
+                        instr.innerHTML = "   " + stepsNum + ". " + steps[i]["step"];
+                        recipeDiv.appendChild(instr);
+                    }
+                } else {
+                    let instr = document.createElement("p");
+                        instr.classList.add("recipelist");
+                        instr.innerHTML = "None";
+                        recipeDiv.appendChild(instr);
+                }
+            }
+        }) 
+        .catch(err => {
+            console.error(err);
+        });
+}
+
 
 fetch("https://api.spoonacular.com/recipes/716429/information?apiKey=349863eb6f0f4135b4d518b60c73d656&includeNutrition=true"
  
