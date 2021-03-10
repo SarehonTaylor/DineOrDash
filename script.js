@@ -5,7 +5,7 @@ input.addEventListener("click", yelpApi);
 function yelpApi() {
     let requestUrl = "https://api.yelp.com/v3/autocomplete?text=del&latitude=37.786882&longitude=-122.399972";
     console.log(requestUrl);
-=======
+
 //Global variables
 let area = document.querySelector("#location");
 let food = document.querySelector("#food");
@@ -127,7 +127,7 @@ function cheater() {
 function recipeApi() {
     let requestUrl = "";
     console.log(requestUrl);
-=======
+
 //Takes the coordinates of the inputed city and the requested food item and prints 10 results to the console
 function restApi(lat, lon, food) {
     let requestUrl = "https://documenu.p.rapidapi.com/menuitems/search/geo?lat=" + lat + "&lon=" + lon + "&distance=5&size=10&page=1&search=" + food;
