@@ -6,6 +6,8 @@ let recipeDiv = document.querySelector("#recipes");
 let restDiv = document.querySelector("#restaurants");
 let historyDiv = document.querySelector("#searchhistory");
 let clear = document.querySelector("#clear");
+let recipeHisDiv = document.querySelector("#recipehistory");
+let recipeClear = document.querySelector("#clearrecipe");
 
 //Uses localStorage to populate an array and the search history
 let array = [];
@@ -29,11 +31,36 @@ if (localArray !== null) {
     }
 }
 
+//Uses localStorage to populate an array and the recipe history
+let recipeArray = [];
+let localRecipe = localStorage.getItem("recipes");
+if (localRecipe !== null) {
+    recipeArray = JSON.parse(localRecipe);
+
+    for (let i = 0; i < recipeArray.length; i++) {
+        let recipeButton = document.createElement("button");
+        recipeButton.innerHTML = recipeArray[i][0];
+        recipeHisDiv.appendChild(recipeButton);
+
+        recipeButton.addEventListener("click", function() {
+            recipeDiv.innerHTML = "";
+            ingredientsApi(recipeArray[i][1]);
+        })
+    }
+}
+
 //Clears search history and localStorage
 clear.addEventListener("click", function() {
     array = [];
     localStorage.setItem("array", JSON.stringify(array));
     historyDiv.innerHTML = "";
+})
+
+//Clears recipe history and localStorage
+recipeClear.addEventListener("click", function() {
+    recipeArray = [];
+    localStorage.setItem("recipes", JSON.stringify(recipeArray));
+    recipeHisDiv.innerHTML = "";
 })
 
 //Calls the recipeApi and coords functions to get information from the APIs when the submit button is clicked
@@ -181,7 +208,20 @@ function recipeApi(food) {
                 recipeDiv.appendChild(bRecipe);
 
                 let recipeId = data["results"][i]["id"];
+
                 bRecipe.addEventListener("click", function() {
+                    recipeArray.push([data["results"][i]["title"], recipeId]);
+                    localStorage.setItem("recipes", JSON.stringify(recipeArray));
+
+                    let recipeP = document.createElement("button");
+                    recipeP.innerHTML = data["results"][i]["title"];
+                    recipeHisDiv.appendChild(recipeP);
+
+                    recipeP.addEventListener("click", function() {
+                        recipeDiv.innerHTML = "";
+                        ingredientsApi(recipeId);
+                    })
+
                     ingredientsApi(recipeId);
                 })
             }            
@@ -247,7 +287,7 @@ function ingredientsApi(recipeId) {
 
                         let instr = document.createElement("p");
                         instr.classList.add("recipelist");
-                        instr.innerHTML = "   " + stepsNum + ". " + steps[i]["step"];
+                        instr.innerHTML = ">>>>" + stepsNum + ". " + steps[i]["step"];
                         recipeDiv.appendChild(instr);
                     }
                 }
@@ -259,7 +299,7 @@ function ingredientsApi(recipeId) {
 
                         let instr = document.createElement("p");
                         instr.classList.add("recipelist");
-                        instr.innerHTML = "   " + stepsNum + ". " + steps[i]["step"];
+                        instr.innerHTML = stepsNum + ". " + steps[i]["step"];
                         recipeDiv.appendChild(instr);
                     }
                 } else {
