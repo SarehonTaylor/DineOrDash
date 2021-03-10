@@ -1,25 +1,186 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Script Tags and Console Log</title>
+
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="./Assets/assets/css/main.css" />
+	<link rel="stylesheet" href="./Assets/assets/css/fontawesome-all.min.css" />
+	<!-- <noscript><link rel="stylesheet" href="./Assets/assets/css/noscript.css" /></noscript> -->
+    
+    <link rel="stylesheet" href="style.css">
+    <title>Dine or Dash</title>
 </head>
 
-<body>
-  <h1 style="text-align:center;">Open the Console to See the Magic ✨! </h1>
+	<body class="is-preload">
 
-  <!--Inline script-->
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">Home</a></li>
+							<li><a href="#one">Choose A Dish</a></li>
+							<li><a href="#two">Selection Screen</a></li>
+							<li><a href="#three">Recent Searches</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
 
-  <script>
+		<!-- Wrapper -->
+			<div id="wrapper">
 
-    //Console logs write data directly to the console.
+				<!-- Intro -->
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+							<h1>Dine or Dash</h1>
+							<form>
+                                <!-- <input type="text" value="Enter Your Ingredients To Begin"><br> -->
+                                <textarea>Enter Your Ingredients To Begin...</textarea><br>
+                                <!-- <input type="submit" value="Submit"> -->
+                              </form> 
+                            
+							<ul class="actions">
+								<li><a href="#one" class="button scrolly">Submit</a></li>
+							</ul>
+						</div>
+					</section>
 
-  </script>
+				<!-- One -->
+					<section id="one" class="wrapper style2 spotlights">
+						<section>
+							<a href="#" class="image"><img src="./Assets/images/pic01.jpg" alt="" data-position="center center" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>Choose A Dish</h2>
+									<p>5-10 top rated recipes based on ingredients given.</p>
+									<ul class="actions">
+										<li><a href="./Assets/generic.html" class="button">Learn more</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+						<section>
+							<a href="#" class="image"><img src="./Assets/images/pic02.jpg" alt="" data-position="top center" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>Option 1</h2>
+									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<ul class="actions">
+										<li><a href="./Assets/generic.html" class="button">Learn more</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+						<section>
+							<a href="#" class="image"><img src="./Assets/images/pic03.jpg" alt="" data-position="25% 25%" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>Option 2</h2>
+									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<ul class="actions">
+										<li><a href="./Assets/generic.html" class="button">Learn more</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+					</section>
 
-  <!--Link to external Javascript file-->
+				<!-- Two -->
+					<section id="two" class="wrapper style3 fade-up">
+						<div class="inner">
+							<h2>Dine or Dash Selection</h2>
+							<p>Based on your input, here are a recipe and dining out option that you may choose from.</p>
+							<div class="features">
+								<section>
+									<span class="icon solid major fa-code"></span>
+									<h3><em>Recipe</em></h3>
+									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+                                    <p>Total cost:</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-lock"></span>
+									<h3><em>Dining Out</em></h3>
+									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+                                    <p>Cost: $</p>
+								</section>
+							</div>
+							<ul class="actions">
+								<li><a href="./Assets/generic.html" class="button">Next</a></li>
+							</ul>
+						</div>
+					</section>
 
-  <script src="script.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+				<!-- Three -->
+					<section id="three" class="wrapper style1 fade-up">
+						<div class="inner">
+							<h2>Recent Searches</h2>
+							<p>Look through your recent recipe searches and ingredients.</p>
+							<div class="split style1">
+								<section>
+									<div method="post" action="#">
+										<div class="fields">
+                                            <h3>LAST 5 RECIPES CHOSEN:</h3>
+									<ol>
+                                        <li>Spaghetti</li>
+                                        <li>Tacos</li>
+                                        <li>Pizza</li>
+                                        <li>Tomato Soup</li>
+                                        <li>Sandwich</li>
+                                    </ol>
+										</div>
+										<ul class="actions">
+											<li><a href="" class="button submit">Click to Clear Searches</a></li>
+										</ul>
+									</div>
+								</section>
+								<section>
+									<div class="contact">
+											<h3>INGREDIENTS LIST</h3>
+                                            <ul>
+                                                <li>Noodles (-)</li>
+                                                <li>Peppers (-)</li>
+                                                <li>Onions (-)</li>
+                                                <li>Eggs (-)</li>
+                                                <li>Click To Add (+)</li>
+                                                <li>Click To Add (+)</li>
+                                                <li>Click To Add (+)</li>
+                                            </ul>
+											<!-- <ul class="icons">
+												<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+												<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+												<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+												<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+												<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+											</ul> -->
+									</div>
+								</section>
+							</div>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="./Assets/assets/js/jquery.min.js"></script>
+			<script src="./Assets/assets/js/jquery.scrollex.min.js"></script>
+			<script src="./Assets/assets/js/jquery.scrolly.min.js"></script>
+			<script src="./Assets/assets/js/browser.min.js"></script>
+			<script src="./Assets/assets/js/breakpoints.min.js"></script>
+			<script src="./Assets/assets/js/util.js"></script>
+			<script src="./Assets/assets/js/main.js"></script>
+      <script src="script.js"></script>
+       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
   
 
 
