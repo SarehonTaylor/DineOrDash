@@ -15,6 +15,7 @@
     --lightBlue: rgb(32, 96, 112);
     --niceTeal: rgb(0, 96, 128);
     --teal: rgb(0, 80, 80);
+    --pastelTeal: rgba(102, 206, 206, 0.75);
     --pastelBlue: rgba(130, 185, 252, 0.75);
     --pastelGreen: rgba(144, 223, 160, 0.75);
     --pastelRed: rgba(255, 148, 200, 0.75);
@@ -22,6 +23,7 @@
     --mint: rgb(0, 192, 96);
     --yellow: rgb(128, 128, 64);
     --red: rgb(128, 0, 64);
+    --button: rgba(105, 165, 165, 0.75);
 }
 
 html {
