@@ -299,7 +299,7 @@ function ingredientsApi(recipeId) {
 
                         let instr = document.createElement("p");
                         instr.classList.add("recipelist");
-                        instr.innerHTML = "   " + stepsNum + ". " + steps[i]["step"];
+                        instr.innerHTML = stepsNum + ". " + steps[i]["step"];
                         recipeDiv.appendChild(instr);
                     }
                 } else {
