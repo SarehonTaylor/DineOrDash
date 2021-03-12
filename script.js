@@ -27,6 +27,7 @@ if (localArray !== null) {
             recipeDiv.innerHTML = "";
             restDiv.innerHTML = "";
             chosenRecipe.innerHTML = "";
+            stepsList.innerHTML = "";
             area.value = array[i][0];
             food.value = array[i][1];
             recipeApi(food.value);
@@ -74,6 +75,7 @@ button.addEventListener("click", function() {
     restDiv.innerHTML = "";
     coords(area.value, food.value);
     chosenRecipe.innerHTML = "";
+    stepsList.innerHTML = "";
 });
 
 //Adds the input items to localStorage and search history
@@ -256,6 +258,7 @@ function ingredientsApi(recipeId) {
             console.log(data);
 
             chosenRecipe.innerHTML = "";
+            stepsList.innerHTML = "";
 
             // let bothLists = document.createElement("div");
             // bothLists.classList.add("bothlists");
