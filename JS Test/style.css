@@ -59,6 +59,25 @@ button {
     box-shadow: 1px 1px 1px white;
 }
 
-#history h1, .history h2, #history p {
+.history h1, .history h2, #history p {
     background-color: var(--pastelBlue);
+}
+
+#totalhistory {
+    display: flex;
+}
+
+.history {
+    flex: 1 1;
+}
+
+#chosenrecipe {
+    display: block;
+}
+
+.bothlists {
+    display: flex;
+    border: 0;
+    margin: 0;
+    padding: 0;
 }
