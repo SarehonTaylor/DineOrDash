@@ -10,7 +10,6 @@ let recipeHisDiv = document.querySelector("#recipehistory");
 let recipeClear = document.querySelector("#clearrecipe");
 let chosenRecipe = document.querySelector("#chosenrecipe");
 
-let ingredientsList = document.querySelector("#ingredientslist");
 let stepsList = document.querySelector("#stepslist");
 
 //Uses localStorage to populate an array and the search history
@@ -264,7 +263,9 @@ function ingredientsApi(recipeId) {
             // let ingredientsList = document.createElement("div");
             // let stepsList = document.createElement("div");
             
-            // chosenRecipe.appendChild(stepsList);            
+            // chosenRecipe.appendChild(stepsList);   
+            let ingredientsList = document.createElement("div");
+         
 
             let foodItem = document.createElement("h2");
             foodItem.innerHTML = data["title"];
