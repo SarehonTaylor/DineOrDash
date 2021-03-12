@@ -8,10 +8,10 @@ let historyDiv = document.querySelector("#searchhistory");
 let clear = document.querySelector("#clear");
 let recipeHisDiv = document.querySelector("#recipehistory");
 let recipeClear = document.querySelector("#clearrecipe");
-
 let chosenRecipe = document.querySelector("#chosenrecipe");
 
-
+let ingredientsList = document.querySelector("#ingredientslist");
+let stepsList = document.querySelector("#stepslist");
 
 //Uses localStorage to populate an array and the search history
 let array = [];
@@ -48,7 +48,6 @@ if (localRecipe !== null) {
         recipeHisDiv.appendChild(recipeButton);
 
         recipeButton.addEventListener("click", function() {
-            // recipeDiv.innerHTML = "";
             ingredientsApi(recipeArray[i][1]);
         })
     }
@@ -97,6 +96,12 @@ button.addEventListener("click", function() {
             recipeApi(food.value);
             coords(area.value, food.value);
         })
+
+        
+    }
+    if (array.length > 5) {
+        array.shift();
+        localStorage.setItem("array", JSON.stringify(array));
     }
     console.log(array);
 })
@@ -251,22 +256,21 @@ function ingredientsApi(recipeId) {
             console.log(recipeId);
             console.log(data);
 
-            // recipeDiv.innerHTML = "";
             chosenRecipe.innerHTML = "";
 
-            let bothLists = document.createElement("div");
-            bothLists.classList.add("bothlists");
+            // let bothLists = document.createElement("div");
+            // bothLists.classList.add("bothlists");
 
-            let ingredientsList = document.createElement("div");
-            let stepsList = document.createElement("div");
-            bothLists.appendChild(ingredientsList);
-            bothLists.appendChild(stepsList);            
+            // let ingredientsList = document.createElement("div");
+            // let stepsList = document.createElement("div");
+            
+            // chosenRecipe.appendChild(stepsList);            
 
             let foodItem = document.createElement("h2");
             foodItem.innerHTML = data["title"];
             chosenRecipe.appendChild(foodItem);
-
-            chosenRecipe.appendChild(bothLists);
+            chosenRecipe.appendChild(ingredientsList);
+            // chosenRecipe.appendChild(bothLists);
 
             let ingredientsH2 = document.createElement("h2");
             ingredientsH2.innerHTML = "Ingredients List:";
