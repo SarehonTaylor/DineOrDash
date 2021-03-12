@@ -19,6 +19,8 @@ header {
     display: flex;
     flex-direction: column;
     border: 2px solid var(--green);
+    overflow-y: auto;
+    height: 500px;
 }
 
 #recipes p, #recipes button, #restaurants p, #restaurants button {
@@ -31,6 +33,8 @@ p, h2 {
 
 #restaurants {
     border: 2px solid var(--red);
+    overflow-y: auto;
+    height: 500px;
 }
 
 #recipes h2 {
@@ -51,6 +55,8 @@ p, h2 {
 #searchhistory, #recipehistory {
     display: flex;
     flex-direction: column-reverse;
+    overflow-y: auto;
+    height: 200px;
 }
 
 #twopanels {
@@ -78,8 +84,19 @@ button {
     flex: 1 1;
 }
 
+.history h2, #clear, #clearrecipe {
+    height: 50px;
+}
+
 #chosenrecipe {
     display: block;
+    overflow-y: auto;
+    height: 300px;
+}
+
+#stepslist {
+    overflow-y: auto;
+    height: 300px;
 }
 
 #chosenrecipe h2, #stepslist h2 {

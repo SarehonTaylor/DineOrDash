@@ -89,7 +89,7 @@ button.addEventListener("click", function() {
     }
 
     if (boo === false) {
-        array.push([area.value, food.value]);
+        array.push(entry);
     }
     
     while (array.length > 5) {
