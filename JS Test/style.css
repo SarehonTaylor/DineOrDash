@@ -25,7 +25,7 @@ header {
     text-align: start;
 }
 
-p, h1, h2 {
+p, h2 {
     text-align: start;
 }
 
@@ -82,7 +82,7 @@ button {
     display: block;
 }
 
-#chosenrecipe h2 {
+#chosenrecipe h2, #stepslist h2 {
     background-color: var(--pastelTeal);
 }
 

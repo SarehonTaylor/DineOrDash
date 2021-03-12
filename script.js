@@ -9,8 +9,8 @@ let clear = document.querySelector("#clear");
 let recipeHisDiv = document.querySelector("#recipehistory");
 let recipeClear = document.querySelector("#clearrecipe");
 let chosenRecipe = document.querySelector("#chosenrecipe");
-
 let stepsList = document.querySelector("#stepslist");
+// style="display: flex; flex-direction: column;"
 
 //Uses localStorage to populate an array and the search history
 let array = [];
@@ -80,7 +80,21 @@ button.addEventListener("click", function() {
 
 //Adds the input items to localStorage and search history
 button.addEventListener("click", function() {
-    array.push([area.value, food.value]);
+    let boo = false;
+    let entry = [area.value, food.value];
+    for (let i = 0; i < array.length; i++) {
+        if (array[i][0] === entry[0] && array[i][1] === entry[1]) {
+            boo = true;
+        }
+    }
+
+    if (boo === false) {
+        array.push([area.value, food.value]);
+    }
+    
+    while (array.length > 5) {
+        array.shift();
+    }
     localStorage.setItem("array", JSON.stringify(array));
     historyDiv.innerHTML = "";
 
@@ -97,12 +111,6 @@ button.addEventListener("click", function() {
             recipeApi(food.value);
             coords(area.value, food.value);
         })
-
-        
-    }
-    if (array.length > 5) {
-        array.shift();
-        localStorage.setItem("array", JSON.stringify(array));
     }
     console.log(array);
 })
@@ -222,18 +230,37 @@ function recipeApi(food) {
                 let recipeId = data["results"][i]["id"];
 
                 bRecipe.addEventListener("click", function() {
-                    recipeArray.push([data["results"][i]["title"], recipeId]);
+
+
+                    let boo = false;
+                    let entry = [data["results"][i]["title"], recipeId];
+                    for (let i = 0; i < recipeArray.length; i++) {
+                        if (recipeArray[i][0] === entry[0] && recipeArray[i][1] === entry[1]) {
+                            boo = true;
+                        }
+                    }
+
+                    if (boo === false) {
+                        recipeArray.push(entry);
+                    }
+
+                    
+                    while (recipeArray.length > 5) {
+                        recipeArray.shift();
+                    }
                     localStorage.setItem("recipes", JSON.stringify(recipeArray));
+                    recipeHisDiv.innerHTML = "";
 
-                    let recipeP = document.createElement("button");
-                    recipeP.innerHTML = data["results"][i]["title"];
-                    recipeHisDiv.appendChild(recipeP);
+                    for (let j = 0; j < recipeArray.length; j++) {
+                        let recipeP = document.createElement("button");
+                        recipeP.innerHTML = recipeArray[j][0];
+                        recipeHisDiv.appendChild(recipeP);
 
-                    recipeP.addEventListener("click", function() {
-                        recipeDiv.innerHTML = "";
-                        ingredientsApi(recipeId);
-                    })
-
+                        recipeP.addEventListener("click", function() {
+                            ingredientsApi(recipeId);
+                        })
+                    }
+                    
                     ingredientsApi(recipeId);
                 })
             }            
@@ -260,21 +287,12 @@ function ingredientsApi(recipeId) {
             chosenRecipe.innerHTML = "";
             stepsList.innerHTML = "";
 
-            // let bothLists = document.createElement("div");
-            // bothLists.classList.add("bothlists");
-
-            // let ingredientsList = document.createElement("div");
-            // let stepsList = document.createElement("div");
-            
-            // chosenRecipe.appendChild(stepsList);   
-            let ingredientsList = document.createElement("div");
-         
-
             let foodItem = document.createElement("h2");
             foodItem.innerHTML = data["title"];
             chosenRecipe.appendChild(foodItem);
+
+            let ingredientsList = document.createElement("div");
             chosenRecipe.appendChild(ingredientsList);
-            // chosenRecipe.appendChild(bothLists);
 
             let ingredientsH2 = document.createElement("h2");
             ingredientsH2.innerHTML = "Ingredients List:";
@@ -327,9 +345,9 @@ function ingredientsApi(recipeId) {
                     }
                 } else {
                     let instr = document.createElement("p");
-                        instr.classList.add("recipelist");
-                        instr.innerHTML = "None";
-                        stepsList.appendChild(instr);
+                    instr.classList.add("recipelist");
+                    instr.innerHTML = "None";
+                    stepsList.appendChild(instr);
                 }
             }
         }) 
