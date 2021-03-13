@@ -1,5 +1,6 @@
 # DineOrDash
-![Getting Started](Assets\images)
+![image](https://user-images.githubusercontent.com/74032335/111030520-ab946f00-83d0-11eb-91a5-8fd35453ffb6.png)
+
 ## Project Description
 
 Webpage allows the user to choose a main dish based on thier zip code,
