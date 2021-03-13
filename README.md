@@ -1,6 +1,6 @@
 # DineOrDash
 
-![Dine Or Dash GIF Master](https://user-images.githubusercontent.com/74032335/111031196-42165f80-83d4-11eb-828f-278e7b8efd96.gif)
+![Dine Or Dash Main Screen](https://user-images.githubusercontent.com/74032335/111031288-cc5ec380-83d4-11eb-8e7f-f9de00e43330.PNG)
 
 
 ## Project Description
@@ -8,6 +8,7 @@
 Webpage allows the user to choose a main dish based on thier zip code,
 then compare a recipe and a resturant to see if the user would like to dine in or eat out at a resturant of choice.
 The webpage will locally store the user’s recent ingredient inputs and searches.
+![Dine Or Dash GIF Master](https://user-images.githubusercontent.com/74032335/111031196-42165f80-83d4-11eb-828f-278e7b8efd96.gif)
 
 ## User Story
 
