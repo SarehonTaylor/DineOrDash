@@ -44,7 +44,7 @@ This program also stores your past 5 searches, so you can revisit your favorite 
 
 * [Documenu API](https://documenu.p.rapidapi.com/menuitems/search/geo?lat=)
 
-* [Mapquest API](https://www.yelp.com/developers/documentation/v3/get_started)
+* [Mapquest API](https://developer.mapquest.com/documentation/geocoding-api/)
 
 - - -
 
