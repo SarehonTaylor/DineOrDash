@@ -256,7 +256,7 @@ function recipeApi(food) {
                         recipeHisDiv.appendChild(recipeP);
 
                         recipeP.addEventListener("click", function() {
-                            ingredientsApi(recipeId);
+                            ingredientsApi(recipeArray[j][1]);
                         })
                     }
                     
