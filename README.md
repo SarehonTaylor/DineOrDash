@@ -5,9 +5,10 @@
 
 ## Project Description
 
-Webpage allows the user to choose a main dish based on thier zip code,
-then compare a recipe and a resturant to see if the user would like to dine in or eat out at a resturant of choice.
-The webpage will locally store the user’s recent ingredient inputs and searches.
+Webpage allows the user to choose a main dish based on their zip code,
+then compare a recipe and a restaurant to see if the user would like
+to dine in or eat out at a restaurant of their choice.
+The webpage will locally store the user’s recent searches and selections.
 
 ![Dine Or Dash GIF Master](https://user-images.githubusercontent.com/74032335/111031196-42165f80-83d4-11eb-828f-278e7b8efd96.gif)
 
