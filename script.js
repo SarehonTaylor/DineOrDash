@@ -10,7 +10,6 @@ let recipeHisDiv = document.querySelector("#recipehistory");
 let recipeClear = document.querySelector("#clearrecipe");
 let chosenRecipe = document.querySelector("#chosenrecipe");
 let stepsList = document.querySelector("#stepslist");
-// style="display: flex; flex-direction: column;"
 
 //Uses localStorage to populate an array and the search history
 let array = [];
