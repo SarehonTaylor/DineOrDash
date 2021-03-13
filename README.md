@@ -1,6 +1,7 @@
 # DineOrDash
 
-![Dine Or Dash Main Screen](https://user-images.githubusercontent.com/74032335/111030537-ce268800-83d0-11eb-955c-699dd9fa4de9.PNG)
+![Dine Or Dash GIF Master](https://user-images.githubusercontent.com/74032335/111031196-42165f80-83d4-11eb-828f-278e7b8efd96.gif)
+
 
 ## Project Description
 
