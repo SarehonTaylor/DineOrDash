@@ -1,4 +1,4 @@
-h1, h2, .inner p, .inner h2 {
+h1, h2, .dineordash {
     text-align: center;
 }
 
@@ -41,4 +41,8 @@ h1, h2, .inner p, .inner h2 {
     font-size: 200%;
     font-style: italic;
     text-decoration: underline;
+}
+
+#chosenrecipe div p, .recipelist {
+    text-align: start;
 }
