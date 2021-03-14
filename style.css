@@ -16,9 +16,23 @@ h1, h2 {
 }
 
 .features section {
-    padding: 3.5em 1em;
+    padding: 3.5em 1em 1em 1em;
 }
 
 .features h3 {
     text-align: center;
+}
+
+#restaurants p {
+    font-weight: bold;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 80%;
+}
+
+.grey {
+    border: 1px solid rgb(202, 128, 177);
+    border-radius: 25px;
+    margin: 0 0 1px 0;
+    padding: 4px;
 }
