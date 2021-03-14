@@ -36,3 +36,9 @@ h1, h2 {
     margin: 0 0 1px 0;
     padding: 6px;
 }
+
+.chosenfooditem {
+    font-size: 200%;
+    font-style: italic;
+    text-decoration: underline;
+}
