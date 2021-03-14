@@ -33,7 +33,7 @@ h1, h2, .dineordash {
 .grey {
     border: 1px solid rgb(202, 128, 177);
     border-radius: 25px;
-    margin: 0 0 1px 0;
+    margin-bottom: 1px;
     padding: 6px;
 }
 
@@ -46,3 +46,31 @@ h1, h2, .dineordash {
 #chosenrecipe div p, .recipelist {
     text-align: start;
 }
+
+button {
+    display: block;
+}
+
+#stepslist {
+    padding: 1em;
+}
+
+#searchdiv {
+    padding: 1em 0 0 0;
+}
+
+#searchdiv p, #searchhistorydiv h3, #recipehistorydiv h3 {
+    text-align: center;
+}
+
+#searchhistorydiv, #recipehistorydiv {
+    flex: 1 1;
+    padding: 1em;
+    overflow-x: auto;
+}
+
+/* @media screen and (max-width: 0px) {
+    #chosenrecipe h2 {
+        text-align: center;
+    }
+} */
