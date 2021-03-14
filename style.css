@@ -4,5 +4,10 @@ h1, h2 {
 
 .inner {
     padding-left: 50px;
-    padding-top: 30px;
+}
+
+@media screen and (min-width: 1282px) {
+    .inner {
+        padding-top: 30px;
+    }
 }
