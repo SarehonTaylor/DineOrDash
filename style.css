@@ -3,11 +3,14 @@ h1, h2 {
 }
 
 .inner {
-    padding-left: 50px;
+    padding-left: 42px;
 }
 
 @media screen and (min-width: 1282px) {
     .inner {
         padding-top: 30px;
+    }
+    #sidebar {
+        padding: 2.5em 2.5em 0.5em 0em; 
     }
 }
