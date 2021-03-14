@@ -14,3 +14,11 @@ h1, h2 {
         padding: 2.5em 2.5em 0.5em 0em; 
     }
 }
+
+.features section {
+    padding: 3.5em 1em;
+}
+
+.features h3 {
+    text-align: center;
+}
