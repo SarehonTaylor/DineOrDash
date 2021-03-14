@@ -288,6 +288,7 @@ function ingredientsApi(recipeId) {
 
             let foodItem = document.createElement("h2");
             foodItem.innerHTML = data["title"];
+            foodItem.classList.add("chosenfooditem");
             chosenRecipe.appendChild(foodItem);
 
             let ingredientsList = document.createElement("div");
