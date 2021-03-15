@@ -68,3 +68,15 @@ button {
     padding: 1em;
     overflow-x: auto;
 }
+
+.content {
+    padding: 1em;
+}
+
+#one section {
+    justify-content: center;
+}
+
+#dineordashdesc {
+    text-align: center;
+}
