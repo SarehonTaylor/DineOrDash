@@ -13,7 +13,7 @@ let stepsList = document.querySelector("#stepslist");
 
 //Uses localStorage to populate an array and the search history
 let array = [];
-let localArray = localStorage.getItem("array");
+let localArray = localStorage.getItem("restaurants");
 if (localArray !== null) {
     array = JSON.parse(localArray);
 
@@ -55,7 +55,7 @@ if (localRecipe !== null) {
 //Clears search history and localStorage
 clear.addEventListener("click", function() {
     array = [];
-    localStorage.setItem("array", JSON.stringify(array));
+    localStorage.setItem("restaurants", JSON.stringify(array));
     historyDiv.innerHTML = "";
 })
 
@@ -94,7 +94,7 @@ button.addEventListener("click", function() {
     while (array.length > 5) {
         array.shift();
     }
-    localStorage.setItem("array", JSON.stringify(array));
+    localStorage.setItem("restaurants", JSON.stringify(array));
     historyDiv.innerHTML = "";
 
     for (let i = 0; i < array.length; i++) {
