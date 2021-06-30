@@ -28,7 +28,7 @@ HTML, CSS, Javascript, Hyperspace CSS Framework, API Integration
 ![Dine Or Dash GIF Master](https://user-images.githubusercontent.com/74032335/111031196-42165f80-83d4-11eb-828f-278e7b8efd96.gif)
 
 ## Description
-A webpage that prompts the user to enter a food dish and their current location, and displays a list of recipies and local restaurants that match their search. The user may then decide if they would like to "Dine in" with a recipe, or "Dash out" at one of the restaurants offering their desired dish. The webpage will locally store the user’s recent searches and selections.
+A webpage that prompts the user to enter a food dish and their current location, and displays a list of recipies and local restaurants that match their search. This provides an easy and convenient way to make dinner plans when you are craving a certain dish, but can't decide whether to dine in or travel elsewhere. The user may then decide if they would like to "Dine in" with a recipe, or "Dash out" at one of the restaurants offering their desired dish. The webpage will locally store the user’s recent searches and selections.
 
 ## User-Story
 ```
