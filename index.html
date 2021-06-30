@@ -4,9 +4,9 @@
 
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="./Assets/assets/css/main.css" />
-	<link rel="stylesheet" href="./Assets/assets/css/fontawesome-all.min.css" />
-	<!-- <noscript><link rel="stylesheet" href="./Assets/assets/css/noscript.css" /></noscript> -->
+	<link rel="stylesheet" href="./assets/css/main.css" />
+	<link rel="stylesheet" href="./assets/css/fontawesome-all.min.css" />
+	<noscript><link rel="stylesheet" href="./Assets/assets/css/noscript.css" /></noscript>
     <link rel="stylesheet" href="style.css">
     <title>Dine or Dash</title>
 </head>
@@ -20,6 +20,7 @@
 						<ul>
 							<li><a href="#intro">Home</a></li>
 							<li><a href="#two">Dine Or Dash Results</a></li>
+							<li><a href="#one">Chosen Recipe</a></li>
 							<li><a href="#three">Recent Searches</a></li>
 							<li><a href="aboutus.html">About Us</a></li>
 						</ul>
@@ -35,7 +36,7 @@
 						<div class="inner">
 							<h1>Dine or Dash</h1>
 							<form>
-                                <input type="text" id="location" placeholder="Enter Your Location (City/State Or Zip Code)"><br>
+                                <input type="text" id="location" placeholder="Enter Your Location (Address/City/Zip Code)"><br>
 							  <input type="text" id="food" placeholder="Enter Your Favorite Food Here &#128512">
 							</form> 
 
@@ -50,82 +51,78 @@
 				<section id="two" class="wrapper style3 fade-up">
 					<div class="inner" id="twopanels">
 						<h2>Dine or Dash Results</h2>
-						<p id="dineordashdesc">Based On Your Favortie Food. We Think These Dine In Or Dash Out Options Would Be A Perfect Fit! &#127869</p>
+						<p id="dineordashdesc">Based On Your Favortie Food, We Think These Dine In Or Dash Out Options Would Be A Perfect Fit! &#127869</p>
 						<div class="features">
                             <section>
                                 <span class="icon solid major fas fa-carrot"></span>
-                                    <h3><em>Dine In</em></h3>
-                                    <div id="recipes"style='overflow-y: auto; height: 800px;' ></div>
+                                    <h3><em>Recipes (Dine In)</em></h3>
+                                    <div id="recipes"></div>
                             </section>
 
                             <section>
                                 <span class="icon solid major fas fa-hand-holding-usd"></span>
-                                    <h3><em>Dash Out</em></h3>
-                                    <div id="restaurants" style='overflow-y: auto; height: 800px;'></div>
+                                    <h3><em>Restaurants (Dash Out)</em></h3>
+                                    <div id="restaurants"></div>
                             </section>
                         </div>
-
-						<ul class="actions">
-							<li><a href="#intro" class="button scrolly" id="submit">Back To HOME</a></li>
-						</ul>
-						<ul class="actions">
-							<li><a href="#one" class="button scrolly" id="submit">See Your Selected Recipe</a></li>
-						</ul>
 					</div>
 				</section>
 
 			<!-- Two -->
-
+				
 				<section id="one" class="wrapper style2 spotlights">
-					<section>
-						<div class="content">
-							<div class="inner">
-								<section id="chosenrecipe">
-								</section>									
+					<h2 id="recipetitle">Chosen Recipe</h2>
+					<p id="recipetitlep">Everything You Need To Prepare Your Dish</p>
+					<section id="oneone">
+
+						<section class="two" id="ingredientslist">
+							<h3>Ingredients List</h3>
+							<div class="content">
+								<div class="inner">
+									<section id="chosenrecipe">
+									</section>									
+								</div>
 							</div>
-						</div>
+						</section>
+	
+						<section class="two">
+							<h3>Recipe Steps</h3>
+							<div class="content">
+								<div class="inner">
+									<section id="stepslist">
+									</section>
+								</div>
+							</div>
+						</section>
 					</section>
 
-					<section>
-						<div class="content">
-							<div class="inner">
-								<section id="stepslist">
-								</section>
+					
 
-								<ul class="actions">
-									<li><a href="#two" class="button scrolly" id="submit">Back To RESULTS</a></li>
-								</ul>
-								<ul class="actions">
-									<li><a href="#three" class="button scrolly" id="submit">See Your Recent Searches</a></li>
-								</ul>			
-							</div>
-						</div>
-					</section>
 				</section>
 					
 			<!-- Three -->
 
 					<section id="three" class="wrapper style1 fade-up" id="history">
 						<div class="inner" id="searchdiv">
-							<h2>Recent Searches</h2>
+							<h2 id="recentsearches">Dine Or Dash History</h2>
 							<p>Look Through Your Recent Searches And Selected Recipes.</p>
-							<div class="split style1">
+							<div class="split style1 history">
 								<section id="searchhistorydiv">
 									<div method="post" action="#">
-                                        <h3>LAST 5 SEARCHES:</h3>
+                                        <h3>Last 10 Searches</h3>
 										<div id="searchhistory"></div>
 										<ul class="actions">
-										<li><a href="" class="button submit" id="clear">Click to Clear Searches</a></li>
+										<li><a class="button submit" id="clear">Clear Searches</a></li>
 										</ul>
 									</div>
 								</section>
 
 								<section id="recipehistorydiv">
 									<div class="contact">
-										<h3>LAST 5 RECIPES SELECTED:</h3>
+										<h3>Last 10 Recipes Selected</h3>
 										<div id="recipehistory"></div>
 										<ul class="actions">
-										<li><a href="" class="button submit" id="clearrecipe">Click to Clear Searches</a></li>
+										<li><a class="button submit" id="clearrecipe">Clear Searches</a></li>
 										</ul>	
 									</div>
 								</section>
@@ -147,16 +144,16 @@
 			</footer>
 
 		<!-- Scripts -->
-			<script src="./Assets/assets/js/jquery.min.js"></script>
-			<script src="./Assets/assets/js/jquery.scrollex.min.js"></script>
-			<script src="./Assets/assets/js/jquery.scrolly.min.js"></script>
-			<script src="./Assets/assets/js/browser.min.js"></script>
-			<script src="./Assets/assets/js/breakpoints.min.js"></script>
-			<script src="./Assets/assets/js/util.js"></script>
-			<script src="./Assets/assets/js/main.js"></script>
-      	<script src="script.js"></script>
+		<script src="./assets/js/jquery.min.js"></script>
+		<script src="./assets/js/jquery.scrollex.min.js"></script>
+		<script src="./assets/js/jquery.scrolly.min.js"></script>
+		<script src="./assets/js/browser.min.js"></script>
+		<script src="./assets/js/breakpoints.min.js"></script>
+		<script src="./assets/js/util.js"></script>
+		<script src="./assets/js/main.js"></script>
        	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 	   	<script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-replace-svg="nest"></script>
+		<script src="script.js"></script>
 
-</body>
+	</body>
 </html>
