@@ -16,7 +16,7 @@
 [Contact](#Contact)
 
 ## Link
-https://dalto135.github.io/dine-or-dash/
+https://sarehontaylor.github.io/DineOrDash/
 
 ## Technologies
 HTML, CSS, Javascript, Hyperspace CSS Framework, API Integration
@@ -68,7 +68,7 @@ This webpage also stores your past 10 searches and past 10 selected recipes, so 
 MIT
 
 ## Contact
-Dalton Wilkins - daltongh@gmail.com 
+Dalton Wilkins - daltongh@gmail.com  
 Elizabeth Ogbonna - elogtechmail@gmail.com  
 Sarehon Taylor - sarehontaylor@icloud.com
 
